@@ -10,20 +10,15 @@ def preprocessing(df):
     # 1. Handle missing value
     df = df.dropna()
 
-    # 2. Encode categorical
+    # 2. Encode categorical columns
+    cat_cols = df.select_dtypes(include="object").columns
+
     le = LabelEncoder()
-    df["type"] = le.fit_transform(df["type"])
+    for col in cat_cols:
+        df[col] = le.fit_transform(df[col])
 
     # 3. Select numeric columns
-    num_cols = [
-        "step",
-        "type",
-        "amount",
-        "oldbalanceOrg",
-        "newbalanceOrig",
-        "oldbalanceDest",
-        "newbalanceDest"
-    ]
+    num_cols = df.columns.drop("isFraud")
 
     # 4. Scaling
     scaler = StandardScaler()
