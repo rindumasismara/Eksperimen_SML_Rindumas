@@ -25,9 +25,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Install gdown
+      run: pip install gdown
+
     - name: Download dataset
       run: |
-        wget -O onlinepaymentfraud_dataset.csv "https://drive.google.com/uc?id=1BnJ4EhL5c8aqL3ZnLB_X5W60HrqFR5jF"
+        gdown --id 1BnJ4EhL5c8aqL3ZnLB_X5W60HrqFR5jF -O onlinepaymentfraud_dataset.csv
 
     - name: Check dataset
       run: |
