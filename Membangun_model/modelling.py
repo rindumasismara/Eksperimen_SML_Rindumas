@@ -25,8 +25,12 @@ def main():
         if not os.path.exists(DATASET_PATH):
             raise FileNotFoundError(f"Dataset tidak ditemukan: {DATASET_PATH}")
 
-        print("Loading dataset...")
-        df = pd.read_csv(DATASET_PATH)
+        print("Loading dataset (chunked)...")
+        chunk_iter = pd.read_csv(
+            DATASET_PATH,
+            chunksize=100_000
+        )
+        df = next(chunk_iter)
 
         X = df.drop(columns=[TARGET_COLUMN])
         y = df[TARGET_COLUMN]
@@ -35,7 +39,7 @@ def main():
             X, y, test_size=0.2, random_state=42
         )
 
-        print("Training model:")
+        print("Training model...")
         model = RandomForestClassifier(
             n_estimators=100,
             max_depth=10,
@@ -62,8 +66,7 @@ def main():
 
         mlflow.log_artifact(cm_path)
 
-        if os.path.exists(cm_path):
-            os.remove(cm_path)
+        os.remove(cm_path)
 
 if __name__ == "__main__":
     main()
