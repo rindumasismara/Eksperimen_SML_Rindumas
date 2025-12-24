@@ -4,27 +4,50 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 def load_data(path):
     return pd.read_csv(path)
 
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+import pandas as pd
+
 def preprocessing(df):
     df = df.copy()
 
-    # 1. Handle missing value
+    # 1. Missing values
     df = df.dropna()
 
-    # 2. Encode categorical columns
-    cat_cols = df.select_dtypes(include="object").columns
+    # 2. Duplikat
+    df = df.drop_duplicates()
 
+    # 3. Drop ID
+    df = df.drop(columns=['nameOrig', 'nameDest'])
+
+    # 4. Encode type
     le = LabelEncoder()
-    for col in cat_cols:
-        df[col] = le.fit_transform(df[col])
+    df['type'] = le.fit_transform(df['type'])
 
-    # 3. Select numeric columns
-    num_cols = df.columns.drop("isFraud")
+    # 5. Scaling numeric
+    num_cols = [
+        'step',
+        'amount',
+        'oldbalanceOrg',
+        'newbalanceOrig',
+        'oldbalanceDest',
+        'newbalanceDest'
+    ]
 
-    # 4. Scaling
     scaler = StandardScaler()
     df[num_cols] = scaler.fit_transform(df[num_cols])
 
-    df[num_cols] = df[num_cols].astype(float)
+    # 6. Outlier detection (IQR)
+    Q1 = df['amount'].quantile(0.25)
+    Q3 = df['amount'].quantile(0.75)
+    IQR = Q3 - Q1
+
+    df = df[
+        (df['amount'] >= Q1 - 1.5 * IQR) &
+        (df['amount'] <= Q3 + 1.5 * IQR)
+    ]
+
+    # 7. Binning (0 = low, 1 = medium, 2 = high, 3 = very high)
+    df['amount_bin'] = pd.qcut(df['amount'], q=4, labels=False)
 
     return df
 
