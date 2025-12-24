@@ -7,24 +7,30 @@ def load_data(path):
 def preprocessing(df):
     df = df.copy()
 
-    # 1. Drop missing value
-    df.dropna(inplace=True)
-    df.drop_duplicates(inplace=True)
+    # 1. Handle missing value
+    df = df.dropna()
 
-    # 2. Encoding kolom type
+    # 2. Encode categorical
     le = LabelEncoder()
     df["type"] = le.fit_transform(df["type"])
 
-    # 3. Scaling kolom numerik
-    scaler = StandardScaler()
+    # 3. Select numeric columns
     num_cols = [
+        "step",
+        "type",
         "amount",
         "oldbalanceOrg",
         "newbalanceOrig",
         "oldbalanceDest",
         "newbalanceDest"
     ]
+
+    # 4. Scaling
+    scaler = StandardScaler()
     df[num_cols] = scaler.fit_transform(df[num_cols])
+
+    df[num_cols] = df[num_cols].astype(float)
+
     return df
 
 def save_data(df, output_path):
