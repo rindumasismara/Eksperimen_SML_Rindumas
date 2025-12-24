@@ -9,6 +9,7 @@ def preprocessing(df):
 
     # 1. Drop missing value
     df.dropna(inplace=True)
+    df.drop_duplicates(inplace=True)
 
     # 2. Encoding kolom type
     le = LabelEncoder()
@@ -30,8 +31,8 @@ def save_data(df, output_path):
     df.to_csv(output_path, index=False)
 
 def main():
-    input_path = "../onlinepaymentfraud_dataset.csv"
-    output_path = "onlinepaymentfraud_preprocessing.csv"
+    input_path = "onlinepaymentfraud_dataset.csv"
+    output_path = "preprocessing/onlinepaymentfraud_preprocessing.csv"
 
     df = load_data(input_path)
     df_clean = preprocessing(df)
