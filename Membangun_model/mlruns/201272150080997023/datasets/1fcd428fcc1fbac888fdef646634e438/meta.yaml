@@ -1,0 +1,13 @@
+digest: ea68a502
+name: dataset
+profile: '{"num_rows": 80000, "num_elements": 720000}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "step", "required": true},
+  {"type": "long", "name": "type", "required": true}, {"type": "double", "name": "amount",
+  "required": true}, {"type": "double", "name": "oldbalanceOrg", "required": true},
+  {"type": "double", "name": "newbalanceOrig", "required": true}, {"type": "double",
+  "name": "oldbalanceDest", "required": true}, {"type": "double", "name": "newbalanceDest",
+  "required": true}, {"type": "double", "name": "isFlaggedFraud", "required": true},
+  {"type": "long", "name": "amount_bin", "required": true}]}'
+source: '{"tags": {"mlflow.user": "User", "mlflow.source.name": "modelling.py", "mlflow.source.type":
+  "LOCAL", "mlflow.source.git.commit": "b0ea33ab2aaab84c83d9d8dc44e999fd4ff2e012"}}'
+source_type: code
