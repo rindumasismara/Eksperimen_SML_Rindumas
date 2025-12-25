@@ -179,31 +179,28 @@ Notifikasi dapat dikirim melalui email atau media lain yang didukung Grafana, se
 
 ## Struktur Folder (Ringkas)
 SMSML_Rindumas-Ismara-Putri
-├── Membangun_model/
-│ ├── modelling.py
-│ ├── modelling_tuning.py
-│ ├── mlruns/
-│ ├── DagsHub.txt
-│ ├── onlinepaymentfraud_preprocessing.csv
-│ ├── requirements.txt
-│ ├── screenshot_artifak-mlflow.jpeg
-│ ├── screenshot_dashboard-mlflow.jpeg
-│
-├── Monitoring_dan_Logging/
-│ ├── inference.py
-│ ├── prometheus.yml
-│ ├── prometheus_exporter.py
-│ ├── inference.log
-│ ├── bukti monitoring/
-│ ├── bukti alerting/
-│ ├── bukti_serving.jpeg
-│
-├── .github/workflows/
-│ ├── preprocessing_workflow.yml
-│
-├── requirements.txt
-├── Workflow-CI.txt
-└── README.md
+- Membangun_model/
+    |- modelling.py
+    |- modelling_tuning.py
+    |- mlruns/
+    |- DagsHub.txt
+    |- onlinepaymentfraud_preprocessing.csv
+    |- requirements.txt
+    |- screenshot_artifak-mlflow.jpeg
+    |- screenshot_dashboard-mlflow.jpeg
+- Monitoring_dan_Logging/
+    |- inference.py
+    |- prometheus.yml
+    |- prometheus_exporter.py
+    |- inference.log
+    |- bukti monitoring/
+    |- bukti alerting/
+    |- bukti_serving.jpeg
+- .github/workflows/
+    |- preprocessing_workflow.yml
+- requirements.txt
+- Workflow-CI.txt
+- README.md
 
 
 ---
