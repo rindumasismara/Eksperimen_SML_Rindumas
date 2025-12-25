@@ -39,10 +39,10 @@ jobs:
 
     - name: Run preprocessing
       run: |
-        python preprocessing/automate_Rindumas.py
+        python automate_Rindumas.py
 
     - name: Commit preprocessing result
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: "Auto-update preprocessing dataset"
-        file_pattern: "preprocessing/onlinepaymentfraud_preprocessing.csv"
+        file_pattern: "onlinepaymentfraud_preprocessing.csv"

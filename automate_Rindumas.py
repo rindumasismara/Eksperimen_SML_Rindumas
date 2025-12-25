@@ -56,7 +56,7 @@ def save_data(df, output_path):
 
 def main():
     input_path = "onlinepaymentfraud_dataset.csv"
-    output_path = "preprocessing/onlinepaymentfraud_preprocessing.csv"
+    output_path = "onlinepaymentfraud_preprocessing.csv"
 
     df = load_data(input_path)
     df_clean = preprocessing(df)
