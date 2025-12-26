@@ -35,6 +35,8 @@ Dataset ini berisi informasi transaksi seperti:
 
 Dataset ini sangat tidak seimbang, sehingga cocok untuk studi kasus fraud detection dan evaluasi model yang lebih realistis.
 
+** Pada dataset yang ada di repository Eksperimen_SML memiliki dataset yang bersifat dummy karena besarnya ukuran dataset yang mengharuskan mengambil data dummy.
+
 ---
 
 ## Alur Proyek Secara Umum
